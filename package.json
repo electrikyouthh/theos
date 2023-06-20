@@ -6,12 +6,10 @@
   "license": "GPL-3.0",
   "homepage": "https://theos.github.io/",
   "bugs": "https://github.com/theos/theos/issues",
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/theos/theos.git"
   },
-
   "keywords": [
     "build",
     "ios",
@@ -20,12 +18,17 @@
     "jailbreak",
     "objc"
   ],
-
   "bin": {
     "logos": "./bin/logos.pl",
     "logify": "./bin/logify.pl",
     "nic": "./bin/nic.pl",
     "nicify": "./bin/nicify.pl",
     "denicify": "./bin/denicify.pl"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "fastclick": "^1.0.6",
+    "font-awesome": "^4.7.0",
+    "html5-boilerplate": "^8.0.0"
   }
 }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="theosvendorinclude"><code>theos/vendor/include</code></h1>
+
+<p>Headers included with Theos for easy compilation of most projects out of the box.</p>
+
+<h2 id="contributionsarewelcome">Contributions are welcome!</h2>
+
+<p>Please send us headers you’ve put together that would be useful to the wider community. Be aware that we are looking for “clean” headers, <em>not</em> generated output from class-dump or a similar tool.</p>
+
+<h2 id="coderules">Code rules</h2>
+
+<ul>
+<li><p>Create headers only for what you use.</p></li>
+<li><p><p>Follow the existing coding style.</p>
+
+<ul>
+<li>Objective-C properties should be in the style of <code>@property (attributes) type name;</code></li>
+<li>Objective-C methods should be in the style of <code>- (type)methodName:(type)variableName parameter:(type)name;</code></li>
+<li>Objective-C generics should be in the style of <code>NSDictionary &lt;NSString *, NSArray &lt;NSObject *&gt; *&gt; *variable</code></li>
+</ul></p></li>
+<li><p>C functions and variables (all symbols) should be declared using <code>FOUNDATION_EXPORT</code></p>
+
+<pre><code class="c">#import &lt;Foundation/Foundation.h&gt;
+
+FOUNDATION_EXPORT int ExternalVariable;
+FOUNDATION_EXPORT const int ExternalConstant;
+FOUNDATION_EXPORT void ExternalFunction(int param);
+</code></pre></li>
+<li><p>Initialisers and singleton (e.g. <code>sharedInstance</code>) methods should return <code>instancetype</code>.</p></li>
+<li><p>Don&#8217;t just copy and paste lines from class-dumps - replace <code>id</code> with the appropriate class. Also change <code>arg1</code> and the like, or in some cases class-dump-z’s guessed argument names, to something more appropriate. If you don’t know the type, Cycript or FLEX can be helpful:</p>
+
+<pre><code class="console">$ cycript -p SpringBoard
+cy# [SBBaconController sharedInstance].baconCurrentlyBeingEaten.class
+@&quot;SBBacon&quot;
+</code></pre>
+
+<p>Additionally, ensure the appropriate types are used. The most common ones are:</p>
+
+<ul>
+<li><code>float</code> and <code>double</code> should usually become <code>CGFloat</code> or <code>NSTimeInterval</code></li>
+<li><code>int</code> and <code>long</code> should usually become <code>NSInteger</code></li>
+<li><code>unsigned int</code> and <code>unsigned long</code> should usually become <code>NSUInteger</code></li>
+</ul>
+
+<p>This is especially important when using the headers as reference for hooking. An incorrect Objective-C type encoding can cause problems.</p></li>
+<li><p>Import all relevant public SDK headers for types used in the header. This usually means using <code>#import &lt;Foundation/Foundation.h&gt;</code> or <code>#import &lt;UIKit/UIKit.h&gt;</code>. For private types, prefer to use <code>@class</code> and <code>@protocol</code>. If not possible, for instance for subclassing and protocol conformance, import the private header defining the type.</p></li>
+<li><p>For compatibility, prefer classic imports for modules:</p>
+
+<pre><code class="objc">// Do:
+#import &lt;Foundation/Foundation.h&gt;
+#import &lt;objc/runtime.h&gt;
+
+// Don’t:
+@import Foundation;
+@import ObjectiveC.runtime;
+</code></pre>
+
+<p>If modules are supported by the compiler, <code>#import</code> of headers from a module will be translated to equivalent <code>@import</code> statements.</p></li>
+<li><p>Any headers under an <a href="https://opensource.org/licenses">OSI-approved license</a> can be included here. Please add its license to <a href="LICENSE.md">LICENSE.md</a>.</p></li>
+</ul>
+
+</body>
+</html>
+

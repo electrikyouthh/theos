@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="filinganissue">Filing an Issue</h1>
+
+<p>We always encourage users to report bugs as soon as they experience them. In order to keep everything organized here are some questions you should ask yourself before reporting:</p>
+
+<h2 id="commonmistakes">Common mistakes</h2>
+
+<ul>
+<li>Have you followed everything on <a href="https://theos.dev/install">https://theos.dev/install</a>?</li>
+<li>Have you set up your environment variables? Most importantly, <code>$THEOS</code> must be set or nothing will work.</li>
+<li>Do you have an SDK and toolchain installed? If you&#8217;re using OS X and building for iOS, OS X, Apple Watch, or Apple TV, Xcode provides both of these.</li>
+<li>When you <code>git clone</code>d Theos, did you use <code>--recursive</code>? Theos uses Git submodules, so if you don&#8217;t clone the submodules, you&#8217;re missing a lot. Try running <code>make update-theos</code> from a Theos project.</li>
+</ul>
+
+<h2 id="generalissues">General issues</h2>
+
+<ul>
+<li>Are you using the latest version of Theos? Run <code>make update-theos</code> from a Theos project, then try again.</li>
+<li>Has this issue been reported already? Please check the <a href="https://github.com/theos/theos/issues">list of open issues</a>.</li>
+</ul>
+
+<h2 id="advice">Advice</h2>
+
+<p>If you&#8217;re sure you&#8217;ve followed all instructions and haven&#8217;t made any of the common mistakes listed above, here are some guidelines for creating an issue:</p>
+
+<ul>
+<li>Is this an issue with Theos itself, or a compiler error, or are you looking for help with your code? The Theos issue tracker is for Theos issues only. Try the <a href="https://github.com/theos/theos/discussions">GitHub Discussions tab</a>, <a href="https://theos.dev/discord">Discord</a>, or <a href="https://www.reddit.com/r/jailbreakdevelopers">Reddit</a>.</li>
+<li>When you ask a question, make sure it&#8217;s not <a href="http://xyproblem.info/">an XY problem</a>.</li>
+<li>Provide as much information as you possibly can.</li>
+<li>Use <code>make troubleshoot</code> to quickly create a <a href="https://gist.github.com/">Gist</a> paste containing the output of <code>make clean all messages=yes</code>.</li>
+<li>Issues are formatted by <a href="https://guides.github.com/features/mastering-markdown/">Markdown</a>. If you paste code into your issue, it will probably end up appearing quite broken because it was interpreted as Markdown. Enclose blocks of code with three backticks (```) at the start and end to make it a nicely formatted code block.</li>
+</ul>
+
+<h2 id="inyourissueplease:">In your issue, please:</h2>
+
+<ul>
+<li>List all operating system names and versions involved in the issue, as well as the toolchain, SDK version, and (if applicable) Xcode version.</li>
+<li>List any other software name/version you think may be related.</li>
+<li>Include any error messages you see.</li>
+<li>List steps to reproduce.</li>
+</ul>
+
+<p>The more information you have, the better. Post as much as you can related to the issues to help us resolve it in a timely matter. If you have multiple issues, please file them as separate issues. This will help us sort them out efficiently.</p>
+
+<p>Don&#8217;t ask a question not related to the topic of the current issue, especially if it&#8217;s on someone else&#8217;s issue. This is known as <a href="http://www.urbandictionary.com/define.php?term=Thread+Hijacking">thread hijacking</a>. You should create a new issue, or ask on another discussion forum. To contact a specific developer, find their GitHub profile and look for their email address, or Twitter, etc.</p>
+
+<p>Thanks!</p>
+
+<h1 id="contributionstandards">Contribution Standards</h1>
+
+<p>Don&#8217;t be afraid to contribute to the development of Theos! Even if you don&#8217;t think you&#8217;ve contributed much, it&#8217;s still greatly appreciated.</p>
+
+<p>Please make sure you abide by these contribution standards so we can retain a high quality codebase and make it easy for everyone to understand and contribute to the code.</p>
+
+<ul>
+<li>Follow all coding standards set by existing code in the repo. Using your own preferences over the established ones for the project just ends up making the code messy.</li>
+<li>Use a commit message of the format <code>[component] Explanation of what changed.</code>. The component is typically a makefile name, or directory name. The first line of commit messages should not be longer than 70 characters. Any subsequent lines should not be longer than 80 characters.</li>
+<li>An explanation of what the commit&#8217;s changes do in your commit message is extremely useful. It helps people to more quickly understand what your code is doing.</li>
+<li>When you submit a pull request, be willing to accept criticism. We don&#8217;t criticise to make you feel bad - we want you to know where you may have made a mistake and this helps you grow as a developer.</li>
+</ul>
+
+</body>
+</html>
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="logos">Logos</h1>
+
+<p>Logos is a Perl regex-based preprocessor that simplifies the boilerplate code needed to create hooks for Objective-C methods and C functions with an elegant Objective-C-like syntax. It’s most commonly used along with the <a href="https://theos.dev/docs/">Theos</a> build system, which was originally developed to create jailbreak tweaks. Logos was once integrated in the same Git repo as Theos, but now has been decoupled from Theos to its own repo.</p>
+
+<p>Logos aims to provide an interface for <a href="http://cydiasubstrate.com/">Cydia Substrate</a> by default, but can be configured to directly use the Objective-C runtime.</p>
+
+<p>Documentation is available on the <a href="https://theos.dev/docs/logos-syntax">Logos Syntax</a>, <a href="https://theos.dev/docs/logify.pl">Logify</a>, and <a href="https://theos.dev/docs/logos-file-extensions">File Extensions</a> pages of <a href="https://theos.dev/docs/">theos.dev</a>.</p>
+
+<h2 id="example">Example</h2>
+
+<h3 id="sourcefile:tweak.x">Source file: Tweak.x</h3>
+
+<pre><code class="logos">%hook NSObject
+
+- (NSString *)description {
+	return [%orig stringByAppendingString:@&quot; (of doom)&quot;];
+}
+
+%new
+- (void)helloWorld {
+	NSLog(@&quot;Awesome!&quot;);
+}
+
+%end
+</code></pre>
+
+<h3 id="logos-processedoutput:tweak.x.m">Logos-processed output: Tweak.x.m</h3>
+
+<p><em>(Modified for brevity)</em></p>
+
+<pre><code class="objc">#include &lt;substrate.h&gt;
+
+static NSString *_logos_method$_ungrouped$NSObject$description(NSObject *self, SEL _cmd) {
+	return [_logos_orig$_ungrouped$NSObject$description(self, _cmd) stringByAppendingString:@&quot; (of doom)&quot;];
+}
+
+static void _logos_method$_ungrouped$NSObject$helloWorld(NSObject * self, SEL _cmd) {
+	NSLog(@&quot;Awesome!&quot;);
+}
+
+static __attribute__((constructor)) void _logosLocalInit() {
+	Class _logos_class$_ungrouped$NSObject = objc_getClass(&quot;NSObject&quot;);
+
+	MSHookMessageEx(_logos_class$_ungrouped$NSObject, @selector(description), (IMP)&amp;_logos_method$_ungrouped$NSObject$description, (IMP*)&amp;_logos_orig$_ungrouped$NSObject$description);
+
+	class_addMethod(_logos_class$_ungrouped$NSObject, @selector(helloWorld), (IMP)&amp;_logos_method$_ungrouped$NSObject$helloWorld, &quot;v@:&quot;);
+}
+</code></pre>
+
+<h2 id="license">License</h2>
+
+<p>Licensed under the GNU General Public License, version 3.0, with an exception that projects created using Logos are not required to use the same license. Refer to <a href="LICENSE.md">LICENSE.md</a>.</p>
+
+</body>
+</html>
+

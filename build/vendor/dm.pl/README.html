@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="dm.pl">dm.pl</h1>
+
+<p>A basic Perl program that makes Debian software packages (.deb files) without needing dpkg installed. It works as a drop-in replacement for <code>dpkg-deb -b</code>, with compatible flags.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>dm.pl is included with and used by Theos, so if you’re using an up-to-date version of Theos you already have access to it! If you believe that you&#8217;re using a legacy version of Theos, see <a href="https://theos.dev/docs/upgrading-from-legacy-theos">here</a> for how to update.</p>
+
+<p>Otherwise, you can either install with npm:</p>
+
+<pre><code class="bash">npm install -g @theosdev/dm.pl
+</code></pre>
+
+<p>…or clone a copy of this repo:</p>
+
+<pre><code class="bash">git clone https://github.com/theos/dm.pl.git
+</code></pre>
+
+<p>…and immediately start using it.</p>
+
+<p>This will work on any system with Perl and xz-utils installed. (If you’re not sure, they almost certainly are already installed by your OS.)</p>
+
+<h2 id="synopsis">Synopsis</h2>
+
+<pre><code>dm.pl [options] &lt;directory&gt; &lt;package&gt;
+</code></pre>
+
+<h2 id="options">Options</h2>
+
+<ul>
+<li><strong><code>-b</code></strong>: This option exists solely for compatibility with dpkg-deb.</li>
+<li><strong><code>-Z&lt;compression&gt;</code></strong>: Specify the package compression type. Valid values are gzip (default), bzip2, lzma, xz and cat (no compression).</li>
+<li><strong><code>-z&lt;compress-level&gt;</code></strong>: Specify the package compression level. Valid values are between 0 and 9. Default is 9 for bzip2, 6 for others, and 0 is equivalent to cat. Refer to <strong>gzip(1)</strong>, <strong>bzip2(1)</strong>, <strong>xz(1)</strong> for explanations of what effect each compression level has.</li>
+<li><strong><code>--help</code>, <code>-?</code></strong>: Print a brief help message and exit.</li>
+<li><strong><code>--man</code></strong>: Print a manual page and exit.</li>
+</ul>
+
+<h2 id="license">License</h2>
+
+<p>Licensed under the MIT License. Refer to <a href="LICENSE.md">LICENSE.md</a>.</p>
+
+</body>
+</html>
+
